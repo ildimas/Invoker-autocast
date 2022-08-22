@@ -1,6 +1,6 @@
 import keyboard as key
 import time
-
+import PySimpleGUI as sg
 def sunstrike():
     key.send("e")
     key.send("e")
@@ -60,6 +60,29 @@ def forge_spirits():
     key.send("r")
     return "forge spirits"
 
+
+sg.theme("BlueMono") 
+layout = [  [sg.Text('Invoker-autocaster')],
+            [sg.Text('Sunstrike button bind'), sg.InputText()],
+            [sg.Text('EMP button bind      '), sg.InputText()],
+            [sg.Text('Blast button bind    '), sg.InputText()],
+            [sg.Text('Tornado button bind  '), sg.InputText()],
+            [sg.Text('Meteor button bind   '), sg.InputText()],
+            [sg.Text('Ghostwalk button bind'), sg.InputText()],
+            [sg.Text('Coldsnap button bind '), sg.InputText()],
+            [sg.Text('Icepath button bind '), sg.InputText()],
+            [sg.Text('Forge spirits button bind'), sg.InputText()],
+            [sg.Button('Ok'), sg.Button('Cancel')] ]
+            
+
+window = sg.Window('test_window_1', layout)
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED or event == 'Cancel':
+        break
+    print(values, type(values))
+
+window.close()
 
 
 
