@@ -72,28 +72,31 @@ layout = [  [sg.Text('Invoker-autocaster')],
             [sg.Text('Coldsnap button bind '), sg.InputText()],
             [sg.Text('Icepath button bind '), sg.InputText()],
             [sg.Text('Forge spirits button bind'), sg.InputText()],
-            [sg.Button('Ok'), sg.Button('Cancel')] ]
-            
+            [sg.Button('Ok'), sg.Button('Reset'), sg.Button('Stop')]]
+
+list_of_spels = [sunstrike, emp, blast, tornado, meteor, ghostwalk, coldsnap, icepath, forge_spirits]           
+blank_list = ["*"] * 9
+
 
 window = sg.Window('test_window_1', layout)
 while True:
+    
     event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Cancel':
-        break
-    print(values, type(values))
+    
+    if event == sg.WIN_CLOSED or event == "Stop":
+        exit()
 
-window.close()
+    k = list(values.items())
+    for a, b in k:
+        blank_list[a] = b
+    print(blank_list)
 
-
-
-key.add_hotkey("9", sunstrike)
-key.add_hotkey("3", emp)
-key.add_hotkey("5", blast)
-key.add_hotkey("2", tornado)
-key.add_hotkey("4", meteor)
-key.add_hotkey("8", ghostwalk)
-key.add_hotkey("1", coldsnap)
-key.add_hotkey("6", icepath)
-key.add_hotkey("7", forge_spirits)
-
-key.wait()
+    if event == "Ok":
+        key.add_hotkey("*", "v")
+        key.unhook_all_hotkeys()
+        for g in range(len(list_of_spels)):
+            if blank_list[g] != "":
+                key.add_hotkey(blank_list[g], list_of_spels[g])
+    if event == "Reset":
+        blank_list = ["*"] * 9
+        key.unhook_all_hotkeys()
