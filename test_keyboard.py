@@ -62,8 +62,7 @@ def forge_spirits():
 
 
 sg.theme("BlueMono") 
-layout = [  [sg.Text('Invoker-autocaster')],
-            [sg.Text('Sunstrike button bind'), sg.InputText()],
+layout = [  [sg.Text('Sunstrike button bind'), sg.InputText()],
             [sg.Text('EMP button bind      '), sg.InputText()],
             [sg.Text('Blast button bind    '), sg.InputText()],
             [sg.Text('Tornado button bind  '), sg.InputText()],
@@ -78,7 +77,7 @@ list_of_spels = [sunstrike, emp, blast, tornado, meteor, ghostwalk, coldsnap, ic
 blank_list = ["*"] * 9
 
 
-window = sg.Window('test_window_1', layout)
+window = sg.Window('Invoker-autocaster', layout)
 while True:
     
     event, values = window.read()
